@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .input {
+      @apply py-2 px-4 w-full border-2 rounded-md border-gray-300;
+    }
+
+    .label {
+      @apply font-semibold text-gray-700;
+    }
+
+    .button {
+      @apply px-2 py-2 mt-4 mb-4 w-full rounded-md bg-green-400 text-white font-bold hover:bg-green-800;
+    }
+
+    .link {
+      @apply underline hover:text-gray-400
+    }
+  }
