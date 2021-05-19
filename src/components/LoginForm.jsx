@@ -47,6 +47,7 @@ const LoginForm = (props) => {
           <input
             type="text"
             name="username"
+            value={formValues.username}
             onChange={handleInput}
             className="input"
           />
@@ -54,6 +55,7 @@ const LoginForm = (props) => {
           <input
             type="password"
             name="password"
+            value={formValues.password}
             onChange={handleInput}
             className="input"
           />
@@ -68,6 +70,7 @@ const LoginForm = (props) => {
           <input
             type="text"
             name="username"
+            value={formValues.username}
             onChange={handleInput}
             className="input"
           />
@@ -75,6 +78,7 @@ const LoginForm = (props) => {
           <input
             type="email"
             name="email"
+            value={formValues.email}
             onChange={handleInput}
             className="input"
           />
@@ -82,6 +86,7 @@ const LoginForm = (props) => {
           <input
             type="password"
             name="password"
+            value={formValues.password}
             onChange={handleInput}
             className="input"
           />

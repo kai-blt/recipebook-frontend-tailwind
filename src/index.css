@@ -3,19 +3,40 @@
 @tailwind utilities;
 
 @layer components {
-    .input {
-      @apply py-2 px-4 w-full border-2 rounded-md border-gray-300;
-    }
-
-    .label {
-      @apply font-semibold text-gray-700;
-    }
-
-    .button {
-      @apply px-2 py-2 mt-4 mb-4 w-full rounded-md bg-green-400 text-white font-bold hover:bg-green-800;
-    }
-
-    .link {
-      @apply underline hover:text-gray-400
-    }
+  .input {
+    @apply py-2 px-4 w-full border-2 rounded-md border-gray-300;
   }
+
+  .label {
+    @apply font-semibold text-gray-700;
+  }
+
+  .button {
+    @apply px-2 py-2 mt-4 mb-4 w-full rounded-md bg-green-400 text-white font-bold hover:bg-green-800;
+  }
+
+  .link {
+    @apply underline hover:text-gray-400;
+  }
+
+  .recipe-card {
+    @apply py-10 mb-4 w-full border-gray-500 rounded-md shadow-md font-bold text-white text-shadow text-lg text-center hover:opacity-30;
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+      .text-shadow {
+        text-shadow: 2px 2px 4px black;
+      }
+      .text-shadow-md {
+        text-shadow: 4px 4px 8px black;
+      }
+      .text-shadow-lg {
+        text-shadow: 15px 15px 30px black;
+      }
+      .text-shadow-none {
+        text-shadow: none;
+      }
+  } 
+}
