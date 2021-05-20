@@ -62,7 +62,7 @@ const EditRecipeForm = () => {
     };
 
     //Dispatch action to add recipe
-    dispatch(recipeActions.addRecipe(newRecipe));   
+    dispatch(recipeActions.editRecipe(newRecipe));   
     
     //Reinitialize form state
     setFormValues(initialFormValues);
