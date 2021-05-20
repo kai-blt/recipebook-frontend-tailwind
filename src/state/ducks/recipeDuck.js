@@ -25,6 +25,11 @@ export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
 export const DELETE_RECIPE_FAIL = 'DELETE_RECIPE_FAIL';
 export const DELETE_RECIPE_RESOLVE = 'DELETE_RECIPE_RESOLVE';
 
+export const VIEW_RECIPE_START = 'VIEW_RECIPE_START';
+export const VIEW_RECIPE_SUCCESS = 'VIEW_RECIPE_SUCCESS';
+export const VIEW_RECIPE_FAIL = 'VIEW_RECIPE_FAIL';
+export const VIEW_RECIPE_RESOLVE = 'VIEW_RECIPE_RESOLVE';
+
 export const SEARCH_IMAGE_START = 'SEARCH_IMAGE_START';
 export const SEARCH_IMAGE_SUCCESS = 'SEARCH_IMAGE_SUCCESS';
 export const SEARCH_IMAGE_FAIL = 'SEARCH_IMAGE_FAIL';
@@ -91,6 +96,12 @@ export const recipeActions = {
     .finally(() => dispatch({ type: DELETE_RECIPE_RESOLVE }));
   },
 
+  // VIEW RECIPE
+  viewRecipe: (recipeName) => dispatch => {
+    dispatch({ type: VIEW_RECIPE_START });
+    dispatch({ type: VIEW_RECIPE_SUCCESS, payload: recipeName });
+  },
+
    // SEARCH IMAGE
    searchImage: (imageQuery) => dispatch => {
     dispatch({ type: SEARCH_IMAGE_START });
@@ -113,6 +124,7 @@ export const recipeActions = {
 export const recipeInitialState = {
   recipes: [],
   imageSearch: [],
+  viewing: '',
   status: 'idle',
 };
 
@@ -177,6 +189,21 @@ const recipeReducer = (state = recipeInitialState, action) => {
   case DELETE_RECIPE_FAIL:
     return { ...state, status: 'delete-recipe/error', error: action.payload };
   case DELETE_RECIPE_RESOLVE:
+    return { ...state, status: 'idle' };
+
+  // VIEW RECIPE
+  case VIEW_RECIPE_START:
+    return { ...state, status: 'view-recipe/pending' };
+  case VIEW_RECIPE_SUCCESS:
+    return {
+    ...state,
+    viewing: action.payload,
+    status: 'view-recipe/success',
+    error: ''
+    };
+  case VIEW_RECIPE_FAIL:
+    return { ...state, status: 'view-recipe/error', error: action.payload };
+  case VIEW_RECIPE_RESOLVE:
     return { ...state, status: 'idle' };
 
   // SEARCH IMAGE

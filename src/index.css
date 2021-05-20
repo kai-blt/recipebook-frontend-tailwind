@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer components {
+  .logo {
+    @apply font-bold text-6xl text-green-400 text-center;
+  }
+
+  .recipe-image {
+    @apply w-full mt-4;
+  }
+
   .input {
     @apply py-2 px-4 w-full border-2 rounded-md border-gray-300;
   }
@@ -20,7 +28,7 @@
   }
 
   .recipe-card {
-    @apply py-10 mb-4 w-full border-gray-500 rounded-md shadow-md font-bold text-white text-shadow text-lg text-center hover:opacity-30;
+    @apply relative py-10 mb-4 sm:w-1/4 sm:m-2 md:w-1/5 lg:w-1/6 border-gray-500 rounded-md shadow-md font-bold text-white text-shadow text-lg text-center hover:opacity-30;
   }
 }
 
