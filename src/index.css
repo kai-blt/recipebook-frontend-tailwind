@@ -28,7 +28,7 @@
   }
 
   .searchtype {
-    @apply font-bold text-gray-700 border-r-2 border-gray-500 p-2 w-5 rounded-l-sm rounded-t-sm;
+    @apply font-bold text-gray-700 border-r-2 border-gray-500 p-2 w-14 rounded-l-sm rounded-t-sm appearance-none;
   }
 
 

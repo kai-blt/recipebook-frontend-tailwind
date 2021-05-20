@@ -64,9 +64,8 @@ const NavBar = () => {
           <rect y="25" width="100" height="15"></rect>
           <rect y="50" width="100" height="15"></rect>
         </svg>
-      </button>
-      
-      <p className="absolute invisible left-20 sm:visible text-white sm:text-2xl md:text-4xl ">RECIPE BOOK</p>
+      </button>      
+      <p className="absolute invisible left-20 md:visible text-white align-middle md:text-3xl ">RECIPE BOOK</p>
       <div className="w-2/3">
         <select onChange={handleSearchType} className="searchtype">
           <option value="title">title</option>
@@ -82,7 +81,7 @@ const NavBar = () => {
         />      
       </div>
       <div className="menu-invisible">
-        <p className="text-7xl mb-8">RECIPE BOOK</p>
+        <p className="text-7xl mb-8 md:hidden">RECIPE BOOK</p>
         <ul>
           <li className="link" onClick={createRecipe}>Create New Recipe</li>
           <li className="link" onClick={logOut}>Logout</li>
