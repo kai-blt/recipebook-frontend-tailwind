@@ -28,6 +28,12 @@ export const DELETE_RECIPE_RESOLVE = 'DELETE_RECIPE_RESOLVE';
 export const VIEW_RECIPE_START = 'VIEW_RECIPE_START';
 export const VIEW_RECIPE_SUCCESS = 'VIEW_RECIPE_SUCCESS';
 
+export const SEARCH_RECIPE_START = 'SEARCH_RECIPE_START';
+export const SEARCH_RECIPE_SUCCESS = 'SEARCH_RECIPE_SUCCESS';
+
+export const SEARCH_TYPE_START = 'SEARCH_TYPE_START';
+export const SEARCH_TYPE_SUCCESS = 'SEARCH_TYPE_SUCCESS';
+
 export const SEARCH_IMAGE_START = 'SEARCH_IMAGE_START';
 export const SEARCH_IMAGE_SUCCESS = 'SEARCH_IMAGE_SUCCESS';
 export const SEARCH_IMAGE_FAIL = 'SEARCH_IMAGE_FAIL';
@@ -106,6 +112,18 @@ export const recipeActions = {
     dispatch({ type: VIEW_RECIPE_SUCCESS, payload: boolean });
   },
 
+  // SEARCH RECIPE
+  searchRecipe: (recipename) => dispatch => {
+    dispatch({ type: SEARCH_RECIPE_START });
+    dispatch({ type: SEARCH_RECIPE_SUCCESS, payload: recipename });
+  },
+
+  // SEARCH TYPE
+  searchType: (type) => dispatch => {
+    dispatch({ type: SEARCH_TYPE_START });
+    dispatch({ type: SEARCH_TYPE_SUCCESS, payload: type });
+  },
+
   // SEARCH IMAGE
   searchImage: (imageQuery) => dispatch => {
     dispatch({ type: SEARCH_IMAGE_START });
@@ -129,6 +147,7 @@ export const recipeInitialState = {
   recipes: [],
   imageSearch: [],
   viewing: '',
+  search: '',
   status: 'idle',
 };
 
@@ -206,6 +225,27 @@ const recipeReducer = (state = recipeInitialState, action) => {
     error: ''
     };
 
+  // SEARCH RECIPE
+  case SEARCH_RECIPE_START:
+    return { ...state, status: 'search-recipe/pending' };
+  case SEARCH_RECIPE_SUCCESS:
+    return {
+    ...state,
+    search: action.payload,
+    status: 'search-recipe/success',
+    error: ''
+    };
+
+  // SEARCH TYPE
+  case SEARCH_TYPE_START:
+    return { ...state, status: 'search-type/pending' };
+  case SEARCH_TYPE_SUCCESS:
+    return {
+    ...state,
+    type: action.payload,
+    status: 'search-type/success',
+    error: ''
+    };
 
   // SEARCH IMAGE
   case SEARCH_IMAGE_START:
