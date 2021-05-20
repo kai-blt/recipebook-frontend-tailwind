@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <header>
-        <h1 className="font-bold text-8xl text-green-400 text-center">Recipe Book</h1>
+        <h1 className="logo">Recipe Book</h1>
       </header>
       <section className="m-2">
         <Switch>
