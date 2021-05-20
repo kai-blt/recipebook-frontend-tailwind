@@ -121,7 +121,7 @@ const EditRecipeForm = () => {
             <label className="label">Ingredient</label>
             <input
               type="text"
-              name="name"
+              name="ingredientname"
               value={ing.name}
               onChange={e => handleChange(e, index)}
               className="input"
@@ -129,7 +129,7 @@ const EditRecipeForm = () => {
             <label className="label">Group</label>
             <input
               type="text"
-              name="ingredientgroup"
+              name="group"
               value={ing.ingredientgroup}
               onChange={e => handleChange(e, index)}
               className="input"
