@@ -9,7 +9,6 @@ const EditRecipeForm = () => {
   const dispatch = useDispatch();
   const { recipename } = useParams();
   const recipe = useSelector(state => state.recipes.recipes.filter(recipe => recipe.name === recipename)[0]);
-  const state = useSelector(state => state.recipes);
 
   //Form Helper Utils
   const { 
@@ -62,7 +61,7 @@ const EditRecipeForm = () => {
     };
 
     //Dispatch action to add recipe
-    dispatch(recipeActions.editRecipe(newRecipe));   
+    dispatch(recipeActions.editRecipe(recipe.recipeid, newRecipe));   
     
     //Reinitialize form state
     setFormValues(initialFormValues);
