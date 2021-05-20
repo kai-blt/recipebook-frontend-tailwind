@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { recipeActions } from '../state/ducks';
 
 const RecipeView = (props) => {
-  console.log(props.recipe)
   const { name, type, imageURL, ingredients, steps } = props.recipe;
-  const [groups, setGroups] = useState(Array.from(new Set(ingredients.map(ing => ing.ingredientgroup))));
+  const groups = Array.from(new Set(ingredients.map(ing => ing.ingredientgroup)));
 
   const dispatch = useDispatch();
 
@@ -22,7 +21,7 @@ const RecipeView = (props) => {
 
   return(
     <>
-      <div>
+      <div className="w-full">
         <button className="button" onClick={stopViewing}>Back</button> 
         <h2 className="font-bold text-4xl">{name}</h2>
         <h3 className="font-light text-3xl">{type}</h3>     
@@ -31,12 +30,12 @@ const RecipeView = (props) => {
           <div className="pl-2">           
             {groups.sort().map(grp => {
               return(
-                <div className="mb-4">
+                <div key={grp} className="mb-4">
                   <div className="font-light text-2xl mb-2 text-gray-700">{grp}</div>
                   <ul>
                     {ingredients.map(ing => 
                       ing.ingredientgroup === grp
-                      ? <li><span className="font-bold">{ing.quantity} {ing.measurement}</span> {ing.name} {ing.ingredientgroup}</li>
+                      ? <li key={ing.ingredientid}><span className="font-bold">{ing.quantity} {ing.measurement}</span> {ing.name} {ing.ingredientgroup}</li>
                       : null)
                     }
                   </ul>
@@ -48,12 +47,12 @@ const RecipeView = (props) => {
           <h4 className="font-bold text-2xl text-green-400 mt-4">Steps</h4>
           <div className="pl-2">
             <ul>
-              {steps.sort().map(step =><li className="mb-4"><span className="font-bold">{step.stepnumber}.</span> {step.instructions}</li>)}
+              {steps.sort().map(step =><li key={step.stepid} className="mb-4"><span className="font-bold">{step.stepnumber}.</span> {step.instructions}</li>)}
             </ul>
           </div>
         </section>
+        <img src={imageURL} alt={name} className="recipe-image" />
       </div>
-      <img src={imageURL} alt={name} className="recipe-image" />
     </>
   );
 };
