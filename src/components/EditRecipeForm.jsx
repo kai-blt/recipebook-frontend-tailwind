@@ -75,8 +75,13 @@ const EditRecipeForm = () => {
     push('/recipes');
   };
 
+  const cancel = () => {
+    push('/recipes');
+  };
+
   return(
     <div className="mt-24">    
+    <div><button onClick={cancel} className="button-close">X</button></div>    
     <form>
       <div className="mb-4">
         <label className="label">Title</label>
