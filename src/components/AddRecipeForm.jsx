@@ -52,7 +52,7 @@ const AddRecipeForm = () => {
     dispatch(recipeActions.addRecipe(newRecipe));   
     
     //Reinitialize form state
-    setFormValues(initialFormValues);
+    setFormValues({...formValues, ...initialFormValues});
   
     // Scroll to top for Safari
     document.body.scrollTop = 0;

@@ -9,6 +9,7 @@ const EditRecipeForm = () => {
   const dispatch = useDispatch();
   const { recipename } = useParams();
   const recipe = useSelector(state => state.recipes.recipes.filter(recipe => recipe.name === recipename)[0]);
+  const state = useSelector(state => state.recipes);
 
   //Form Helper Utils
   const { 
@@ -34,8 +35,13 @@ const EditRecipeForm = () => {
       ...recipe
     });
   },[])
-  
-  const cancel = () => {
+    
+
+  const deleteRecipe = (e) => {
+    e.preventDefault();
+    dispatch(recipeActions.deleteRecipe(recipe.recipeid));
+    setFormValues({...formValues, ...initialFormValues});
+    dispatch(recipeActions.viewRecipe(''));
     push('/recipes');
   };
 
@@ -161,7 +167,7 @@ const EditRecipeForm = () => {
         ))}
       </div>
       <button className="button" onClick={e => submit(e)}>Submit</button>
-      <button className="button-cancel" onClick={cancel}>Cancel</button>
+      <button className="button-cancel" onClick={deleteRecipe}>Delete Recipe</button>
     </form>
     </div>
   )

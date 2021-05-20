@@ -1,14 +1,9 @@
 import { NavBar, LoginForm, Recipes, EditRecipeForm, AddRecipeForm } from './components';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { Switch, Route, useLocation } from 'react-router';
-import { useEffect } from 'react';
 
 const App = () => {
   const location = useLocation();
-
-  useEffect(()=> {
-    console.log(location)
-  }, [location]);
 
   return (
     <div>
