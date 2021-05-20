@@ -19,6 +19,11 @@
     @apply py-2 px-2 w-full border-2 rounded-md border-gray-300;
   }
 
+  .searchbar {
+    @apply py-2 px-2 w-2/3 border-none rounded-r-sm rounded-b-sm border-gray-300;
+  }
+
+
   .textarea {
     @apply py-2 px-2 w-full h-32 border-2 rounded-md border-gray-300;
   }
@@ -33,6 +38,10 @@
 
   .button {
     @apply px-2 py-2 mt-4 mb-4 w-full rounded-md bg-green-400 text-white font-bold hover:bg-gray-700;
+  }
+
+  .button-close {
+    @apply px-1 py-1 w-1/6 fixed right-1 top-20 rounded-lg shadow-lg bg-gray-600 text-white font-bold hover:bg-gray-700;
   }
 
   .button-add {
@@ -52,7 +61,7 @@
   }
 
   .menu-invisible {
-    @apply p-4 fixed left-0 top-16 z-0 w-full h-full invisible bg-green-600 text-white font-bold text-2xl;
+    @apply p-4 fixed left-0 top-16 z-0 w-full h-full opacity-0 invisible bg-green-600 text-white font-bold text-2xl transition duration-500;
   }
 
   .menu-visible {

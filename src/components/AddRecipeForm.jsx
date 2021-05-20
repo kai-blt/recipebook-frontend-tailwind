@@ -64,6 +64,7 @@ const AddRecipeForm = () => {
 
   return(
     <div className="mt-24">    
+      <div><button onClick={cancel} className="button-close">X</button></div>    
       <form>
         <div className="mb-4">
           <label className="label">Title</label>
@@ -154,7 +155,6 @@ const AddRecipeForm = () => {
           ))}
         </div>
         <button className="button" onClick={e => submit(e)}>Submit</button>
-        <button className="button-cancel" onClick={cancel}>Cancel</button>
       </form>
     </div>
   )

@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { recipeActions } from '../state/ducks';
 
 const RecipeView = (props) => {
   const { name, type, imageURL, ingredients, steps } = props.recipe;
   const groups = Array.from(new Set(ingredients.map(ing => ing.ingredientgroup)));
   const { push } = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Scroll to top for Safari
@@ -17,9 +20,14 @@ const RecipeView = (props) => {
     push(`/edit-recipe/${name}`);
   };
 
+  const cancel = () => {
+    dispatch(recipeActions.viewRecipe(''));
+  };
+
   return(
     <>
       <div className="w-full">
+        <div><button onClick={cancel} className="button-close">X</button></div>        
         <h2 className="font-bold text-4xl">{name}</h2>
         <h3 className="font-light text-3xl">{type}</h3>     
         <section>
