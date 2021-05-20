@@ -1,7 +1,6 @@
-import { NavBar, LoginForm, Recipes } from './components';
+import { NavBar, LoginForm, Recipes, EditRecipeForm, AddRecipeForm } from './components';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { Switch, Route, useLocation } from 'react-router';
-import AddRecipeForm from './components/AddRecipeForm';
 import { useEffect } from 'react';
 
 const App = () => {
@@ -21,6 +20,7 @@ const App = () => {
       </header>
       <section className="m-2">
         <Switch>
+          <ProtectedRoute path="/edit-recipe/:recipename" component={EditRecipeForm} />
           <ProtectedRoute path="/add-recipe" component={AddRecipeForm} />
           <ProtectedRoute path="/recipes" component={Recipes} />
           <Route path="/" component={LoginForm} />

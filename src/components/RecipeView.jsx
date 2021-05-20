@@ -1,21 +1,25 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { recipeActions } from '../state/ducks';
+import { useHistory } from 'react-router';
 
 const RecipeView = (props) => {
   const { name, type, imageURL, ingredients, steps } = props.recipe;
   const groups = Array.from(new Set(ingredients.map(ing => ing.ingredientgroup)));
+  const { push } = useHistory();
 
   useEffect(() => {
     // Scroll to top for Safari
     document.body.scrollTop = 0;
     // Scroll to top for Chrome, Firefox, IE, Opera
     document.documentElement.scrollTop = 0; 
-  },[])
+  },[]);
+
+  const editRecipe = () => {
+    push(`/edit-recipe/${name}`);
+  };
 
   return(
     <>
-      <div className="max-w-full">
+      <div className="w-full">
         <h2 className="font-bold text-4xl">{name}</h2>
         <h3 className="font-light text-3xl">{type}</h3>     
         <section>
@@ -45,6 +49,7 @@ const RecipeView = (props) => {
           </div>
         </section>
         <div className="recipe-image" style={{backgroundImage: `url(${imageURL})`, backgroundSize: "cover"}}></div>
+        <button onClick={editRecipe} className="button">Edit Recipe</button>
       </div>
     </>
   );
