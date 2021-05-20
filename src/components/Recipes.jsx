@@ -8,7 +8,6 @@ const Recipes = (props) => {
   //Redux State Managers
   const dispatch = useDispatch();
   const { recipes, viewing, status, search, type } = useSelector(state => state.recipes);
-  console.log(search)
 
   useEffect(() =>{
     dispatch(recipeActions.getRecipes());
@@ -20,6 +19,7 @@ const Recipes = (props) => {
         dispatch(recipeActions.getRecipes());
         break;
       case "delete-recipe/success":
+        console.log('deleted')
         dispatch(recipeActions.getRecipes());
         break;
       case "edit-recipe/success":

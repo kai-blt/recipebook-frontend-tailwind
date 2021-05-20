@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 //Initial Form Values
 export const initialFormValues = {
-  name: "(Enter Title)",
-  type: "(Enter Type)",
+  name: "",
+  type: "",
   imageURL: "",
   imageSearch: "",
   ingredients: [{ quantity: "", measurement: "", name: "", ingredientgroup: "" }],
