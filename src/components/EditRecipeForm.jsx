@@ -71,6 +71,7 @@ const EditRecipeForm = () => {
     // Scroll to top for Chrome, Firefox, IE, Opera
     document.documentElement.scrollTop = 0;
 
+    dispatch(recipeActions.viewRecipe(''));
     push('/recipes');
   };
 
