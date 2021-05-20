@@ -24,11 +24,11 @@
   }
 
   .searchbar {
-    @apply py-2 px-2 w-2/3 border-none rounded-r-sm rounded-b-sm border-gray-300;
+    @apply py-2 px-2 w-2/6 md:w-3/4 border-none rounded-r-sm rounded-br-sm rounded-tr-sm border-gray-300;
   }
 
   .searchtype {
-    @apply font-bold text-gray-700 border-r-2 border-gray-500 p-2 w-14 rounded-l-sm rounded-t-sm appearance-none;
+    @apply font-bold text-gray-700 border-r-2 border-gray-500 p-2 w-24 rounded-tl-sm rounded-bl-sm appearance-none;
   }
 
 

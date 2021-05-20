@@ -66,7 +66,7 @@ const NavBar = () => {
         </svg>
       </button>      
       <p className="absolute invisible left-20 md:visible text-white align-middle md:text-3xl ">RECIPE BOOK</p>
-      <div className="w-2/3">
+      <div className="w-3/5">
         <select onChange={handleSearchType} className="searchtype">
           <option value="title">title</option>
           <option value="ingredient">ingredient</option>
