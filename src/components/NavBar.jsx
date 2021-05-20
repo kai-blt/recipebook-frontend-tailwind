@@ -65,6 +65,8 @@ const NavBar = () => {
           <rect y="50" width="100" height="15"></rect>
         </svg>
       </button>
+      
+      <p className="absolute invisible left-20 sm:visible text-white sm:text-2xl md:text-4xl ">RECIPE BOOK</p>
       <div className="w-2/3">
         <select onChange={handleSearchType} className="searchtype">
           <option value="title">title</option>
