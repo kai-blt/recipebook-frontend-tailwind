@@ -6,8 +6,6 @@ const RecipeView = (props) => {
   const { name, type, imageURL, ingredients, steps } = props.recipe;
   const groups = Array.from(new Set(ingredients.map(ing => ing.ingredientgroup)));
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     // Scroll to top for Safari
     document.body.scrollTop = 0;
@@ -15,14 +13,9 @@ const RecipeView = (props) => {
     document.documentElement.scrollTop = 0; 
   },[])
 
-  const stopViewing = () => {
-    dispatch(recipeActions.viewRecipe(''))
-  };
-
   return(
     <>
-      <div className="w-full">
-        <button className="button" onClick={stopViewing}>Back</button> 
+      <div className="max-w-full">
         <h2 className="font-bold text-4xl">{name}</h2>
         <h3 className="font-light text-3xl">{type}</h3>     
         <section>
@@ -51,7 +44,7 @@ const RecipeView = (props) => {
             </ul>
           </div>
         </section>
-        <img src={imageURL} alt={name} className="recipe-image" />
+        <div className="recipe-image" style={{backgroundImage: `url(${imageURL})`, backgroundSize: "cover"}}></div>
       </div>
     </>
   );
