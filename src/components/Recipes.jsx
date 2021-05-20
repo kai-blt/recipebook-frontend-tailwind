@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { recipeActions } from '../state/ducks';
 import { RecipeCard, RecipeView } from './'
 
@@ -9,7 +10,9 @@ const Recipes = (props) => {
 
   //Redux State Managers
   const dispatch = useDispatch();
+  const { push } = useHistory();
   const { recipes, viewing, status } = useSelector(state => state.recipes);
+
 
   useEffect(() =>{
     dispatch(recipeActions.getRecipes());
@@ -39,44 +42,48 @@ const Recipes = (props) => {
     setSearchType(e.target.value);
   };
 
+  const createRecipe = () => {
+    push('/add-recipe');
+  };
+
   return (
-    <>
+    <div>
       <section>
         {viewing
           ? null
           : 
             <> 
-            <label className="label">Search by</label>
-            <select onChange={handleSearchType} className="font-bold text-green-400">
-              <option value="title">title</option>
-              <option value="ingredient">ingredient</option>
-            </select>
-            <input
-              type="text"
-              name="search"
-              value={searchValue}
-              onChange={handleSearch}
-              className="input"
-            />
-            </>        
-        }
-       
+              <label className="label">Search by</label>
+              <select onChange={handleSearchType} className="font-bold text-green-400">
+                <option value="title">title</option>
+                <option value="ingredient">ingredient</option>
+              </select>
+              <input
+                type="text"
+                name="search"
+                value={searchValue}
+                onChange={handleSearch}
+                className="input"
+              />
+              <button className="button" onClick={createRecipe}>Add Recipe</button>
+            </>
+        }       
       </section>
       <section className="flex flex-col justify-between mt-4 sm:flex-row flex-wrap">
-      {viewing
-      ? <RecipeView recipe={viewing} />
-      : recipes
-        ? searchType !== "ingredient" 
-          ? recipes
-              .filter(recipe => recipe.name.match(new RegExp(`${searchValue}`, "i")))
-              .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
+        {viewing
+          ? <RecipeView recipe={viewing} />
           : recipes
-              .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${searchValue}`, "i"))))
-              .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />) 
-      : <div>Loading...</div>
-      }          
+            ? searchType !== "ingredient" 
+              ? recipes
+                  .filter(recipe => recipe.name.match(new RegExp(`${searchValue}`, "i")))
+                  .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
+              : recipes
+                  .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${searchValue}`, "i"))))
+                  .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />) 
+          : <div>Loading...</div> 
+        }          
       </section>
-    </>
+    </div>
   );
 };
 

@@ -27,8 +27,6 @@ export const DELETE_RECIPE_RESOLVE = 'DELETE_RECIPE_RESOLVE';
 
 export const VIEW_RECIPE_START = 'VIEW_RECIPE_START';
 export const VIEW_RECIPE_SUCCESS = 'VIEW_RECIPE_SUCCESS';
-export const VIEW_RECIPE_FAIL = 'VIEW_RECIPE_FAIL';
-export const VIEW_RECIPE_RESOLVE = 'VIEW_RECIPE_RESOLVE';
 
 export const SEARCH_IMAGE_START = 'SEARCH_IMAGE_START';
 export const SEARCH_IMAGE_SUCCESS = 'SEARCH_IMAGE_SUCCESS';
@@ -102,8 +100,14 @@ export const recipeActions = {
     dispatch({ type: VIEW_RECIPE_SUCCESS, payload: recipeName });
   },
 
-   // SEARCH IMAGE
-   searchImage: (imageQuery) => dispatch => {
+  // CREATE RECIPE
+  createRecipe: (boolean) => dispatch => {
+    dispatch({ type: VIEW_RECIPE_START });
+    dispatch({ type: VIEW_RECIPE_SUCCESS, payload: boolean });
+  },
+
+  // SEARCH IMAGE
+  searchImage: (imageQuery) => dispatch => {
     dispatch({ type: SEARCH_IMAGE_START });
 
     axios
@@ -201,10 +205,7 @@ const recipeReducer = (state = recipeInitialState, action) => {
     status: 'view-recipe/success',
     error: ''
     };
-  case VIEW_RECIPE_FAIL:
-    return { ...state, status: 'view-recipe/error', error: action.payload };
-  case VIEW_RECIPE_RESOLVE:
-    return { ...state, status: 'idle' };
+
 
   // SEARCH IMAGE
   case SEARCH_IMAGE_START:
