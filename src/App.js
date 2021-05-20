@@ -12,7 +12,7 @@ const App = () => {
   }, [location]);
 
   return (
-    <>
+    <div>
       <header className="w-full">
         {location.pathname === "/"
           ? <h1 className="logo">Recipe Book</h1>
@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/" component={LoginForm} />
         </Switch>
       </section>
-    </>
+    </div>
   );
 }
 

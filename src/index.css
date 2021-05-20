@@ -6,9 +6,13 @@
   .logo {
     @apply mt-4 font-bold text-6xl text-green-400 text-center;
   }
-
+  
   .recipe-image {
     @apply p-4 h-40 w-full md:h-80 mt-4 border rounded-md;
+  }
+  
+  .recipe-card {
+    @apply relative py-10 mb-4 sm:w-1/4 sm:m-2 md:w-1/5 lg:w-1/6 border-2 border-gray-700 rounded-md shadow-md font-bold text-white text-shadow text-lg text-center transition duration-300 ease-in-out hover:opacity-30;
   }
 
   .input {
@@ -47,8 +51,12 @@
     @apply underline hover:text-gray-400;
   }
 
-  .recipe-card {
-    @apply relative py-10 mb-4 sm:w-1/4 sm:m-2 md:w-1/5 lg:w-1/6 border-gray-500 rounded-md shadow-md font-bold text-white text-shadow text-lg text-center hover:opacity-30;
+  .menu-invisible {
+    @apply p-4 fixed left-0 top-16 z-0 w-full h-full invisible bg-green-600 text-white font-bold text-2xl;
+  }
+
+  .menu-visible {
+    @apply visible;
   }
 }
 
