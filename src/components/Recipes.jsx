@@ -8,7 +8,7 @@ const Recipes = (props) => {
   //Redux State Managers
   const dispatch = useDispatch();
   const { recipes, viewing, status, search, searchType, filterType } = useSelector(state => state.recipes);
-  console.log(searchType, filterType, recipes)
+  
   useEffect(() =>{
     dispatch(recipeActions.getRecipes());
   },[dispatch]);
@@ -19,7 +19,6 @@ const Recipes = (props) => {
         dispatch(recipeActions.getRecipes());
         break;
       case "delete-recipe/success":
-        console.log('deleted')
         dispatch(recipeActions.getRecipes());
         break;
       case "edit-recipe/success":
@@ -32,6 +31,7 @@ const Recipes = (props) => {
 
   return (
     <div className="mt-24">
+      <div className="mb-4 ml-1">Viewing <span className="font-bold text-purple-700">{filterType.toUpperCase()}</span> recipes:</div>
       <section className="recipe-container">
         {viewing
           ? <RecipeView recipe={viewing} />
@@ -97,14 +97,6 @@ const Recipes = (props) => {
           }[searchType]
               
             :<div>Loading...</div>
-          //   ? type !== "ingredient" 
-          //     ? recipes
-          //         .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
-          //         .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
-          //     : recipes
-          //         .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${search}`, "i"))))
-          //         .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />) 
-          // : <div>Loading...</div> 
         }          
       </section>
     </div>
