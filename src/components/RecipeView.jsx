@@ -40,7 +40,7 @@ const RecipeView = (props) => {
                   <ul>
                     {ingredients.map(ing => 
                       ing.ingredientgroup === grp
-                      ? <li key={ing.ingredientid}><span className="font-bold">{ing.quantity} {ing.measurement}</span> {ing.name} {ing.ingredientgroup}</li>
+                      ? <li key={ing.ingredientid}><span className="font-bold">{ing.quantity} {ing.measurement}</span> {ing.name}</li>
                       : null)
                     }
                   </ul>
@@ -52,7 +52,7 @@ const RecipeView = (props) => {
           <h4 className="h4">Steps</h4>
           <div className="pl-2">
             <ul>
-              {steps.sort().map(step =><li key={step.stepid} className="mb-4"><span className="font-bold">{step.stepnumber}.</span> {step.instructions}</li>)}
+              {steps.sort((a, b) => a.stepnumber - b.stepnumber).map(step =><li key={step.stepid} className="mb-4"><span className="font-bold">{step.stepnumber}.</span> {step.instructions}</li>)}
             </ul>
           </div>
         </section>

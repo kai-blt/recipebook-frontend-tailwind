@@ -67,7 +67,7 @@ const NavBar = () => {
   return(    
     <nav className="navbar"> 
       <button onClick={toggleMenu} className="w-10 transition duration-200">
-        <svg className="text-green-400" viewBox="0 0 100 60" fill="white" width="40" height="40">
+        <svg viewBox="0 0 100 60" fill="white" width="40" height="40">
           <rect width="100" height="15"></rect>
           <rect y="25" width="100" height="15"></rect>
           <rect y="50" width="100" height="15"></rect>
@@ -89,9 +89,9 @@ const NavBar = () => {
         />      
       </div>
       <div className="menu-invisible">
-        <p className="text-7xl mb-8 md:hidden">RECIPE BOOK</p>
+        <p className="text-5xl mb-8 md:hidden">RECIPE BOOK</p>
         <ul>
-          <li className="navlink mb-10" onClick={createRecipe}>Create New Recipe</li>
+          <li className="navlink mb-10" onClick={createRecipe}>New Recipe</li>
           <li className="navlink mb-2" onClick={()=> filterType('')}>All Recipes</li>
           <li className="navlink mb-2" onClick={()=> filterType('main')}>Main</li>
           <li className="navlink mb-2" onClick={()=> filterType('side')}>Side</li>
