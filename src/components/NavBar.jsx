@@ -83,8 +83,8 @@ const NavBar = () => {
       <div className="menu-invisible">
         <p className="text-7xl mb-8 md:hidden">RECIPE BOOK</p>
         <ul>
-          <li className="link" onClick={createRecipe}>Create New Recipe</li>
-          <li className="link" onClick={logOut}>Logout</li>
+          <li onClick={createRecipe}>Create New Recipe</li>
+          <li onClick={logOut}>Logout</li>
         </ul>
       </div>
       {/* <button className="button" onClick={createRecipe}>Add Recipe</button>    */}

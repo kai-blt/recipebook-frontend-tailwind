@@ -4,11 +4,11 @@
 
 @layer components {
   .logo {
-    @apply mt-4 mb-6 sm:mb-8 font-bold text-6xl sm:text-7xl md:text-8xl text-purple-700 text-center;
+    @apply mt-4 mb-6 sm:mb-8 font-bold text-6xl sm:text-7xl md:text-8xl text-purple-600 text-center;
   }
 
   .navbar {
-    @apply p-4 w-full  shadow-md flex flex-row justify-between fixed top-0 left-0 z-40 bg-purple-700;
+    @apply p-4 w-full  shadow-md flex flex-row justify-between fixed top-0 left-0 z-10 bg-purple-700;
   }
   
   .recipe-image {
@@ -44,16 +44,20 @@
     @apply font-semibold text-gray-700;
   }
 
+  .h4 {
+    @apply font-bold text-2xl text-purple-700 mt-4;
+  }
+
   .heading2 {
     @apply font-bold text-3xl text-purple-700 mt-4 mb-2;
   }
 
   .button {
-    @apply px-2 py-2 mt-4 mb-4 w-full rounded-md bg-purple-700 text-white font-bold hover:bg-gray-700;
+    @apply px-2 py-2 mt-4 mb-4 w-full rounded-md bg-purple-700 text-white font-bold transition duration-200 hover:bg-gray-700;
   }
 
   .button-close {
-    @apply px-1 py-1 w-1/6 fixed right-1 top-20 rounded-lg shadow-lg bg-gray-600 text-white font-bold hover:bg-gray-700;
+    @apply px-1 py-1 w-6 rounded-lg font-bold text-2xl transition duration-500 transform hover:scale-90 hover:text-gray-500;
   }
 
   .button-add {
@@ -73,7 +77,7 @@
   }
 
   .menu-invisible {
-    @apply p-4 fixed left-0 top-16 z-0 w-full h-full opacity-0 invisible bg-purple-800 text-white font-bold text-2xl transition duration-500;
+    @apply p-4 fixed mt-2 left-0 top-16 z-10 w-full sm:w-1/2 md:w-1/4 h-full opacity-0 invisible bg-purple-800 text-white font-bold text-2xl transition duration-500;
   }
 
   .menu-visible {
