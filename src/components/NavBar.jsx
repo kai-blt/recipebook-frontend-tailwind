@@ -57,7 +57,7 @@ const NavBar = () => {
   };
 
   return(    
-    <nav className="p-4 w-full  shadow-md flex flex-row justify-between fixed top-0 left-0 z-40 bg-green-400"> 
+    <nav className="navbar"> 
       <button onClick={toggleMenu} className="w-10 transition duration-200">
         <svg className="text-green-400" viewBox="0 0 100 60" fill="white" width="40" height="40">
           <rect width="100" height="15"></rect>
