@@ -30,7 +30,7 @@ const Recipes = (props) => {
   },[dispatch, status]);
 
   return (
-    <div className="mt-24">
+    <div className="mt-20">
       {viewing !== ""
         ? null
         : <div className="mb-4 ml-4 sm:ml-14 font-bold text-gray-700">Viewing <span className="font-bold text-purple-700">{filterType == "" ? 'ALL' : filterType.toUpperCase()}</span> recipes:</div>
