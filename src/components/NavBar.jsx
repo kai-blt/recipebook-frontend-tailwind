@@ -52,6 +52,10 @@ const NavBar = () => {
     push('/recipes');
   };
 
+  const filterType = (type) => {
+    dispatch(recipeActions.filterType(type));
+  }
+
   const logOut = () => {
     dispatch(userActions.logout());
   };
@@ -83,8 +87,12 @@ const NavBar = () => {
       <div className="menu-invisible">
         <p className="text-7xl mb-8 md:hidden">RECIPE BOOK</p>
         <ul>
-          <li onClick={createRecipe}>Create New Recipe</li>
-          <li onClick={logOut}>Logout</li>
+          <li className="cursor-pointer mb-10" onClick={createRecipe}>Create New Recipe</li>
+          <li className="cursor-pointer mb-2" onClick={() => filterType('')}>All Recipes</li>
+          <li className="cursor-pointer mb-2" onClick={() => filterType('main')}>Main</li>
+          <li className="cursor-pointer mb-2" onClick={() => filterType('side')}>Sides</li>
+          <li className="cursor-pointer mb-10" onClick={() => filterType('sweets')}>Desserts</li>
+          <li className="cursor-pointer mb-2" onClick={logOut}>Logout</li>
         </ul>
       </div>
       {/* <button className="button" onClick={createRecipe}>Add Recipe</button>    */}

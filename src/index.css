@@ -11,12 +11,16 @@
     @apply p-4 w-full  shadow-md flex flex-row justify-between fixed top-0 left-0 z-10 bg-purple-700;
   }
   
+  .recipe-container {
+    @apply flex flex-col justify-between sm:flex-row flex-wrap;
+  }
+
   .recipe-image {
     @apply p-4 h-40 w-full md:h-80 mt-4 border rounded-md;
   }
   
   .recipe-card {
-    @apply relative py-10 mb-4 sm:w-1/4 sm:m-2 md:w-1/5 lg:w-1/6 border-b-2 border-gray-700 rounded-md shadow-md font-bold text-white text-shadow text-lg text-center transition duration-300 ease-in-out hover:opacity-30;
+    @apply relative py-20 mb-4 sm:w-1/4 sm:m-2 md:w-1/5 lg:w-1/6 border-b-2 border-gray-700 rounded-md shadow-md font-bold text-white text-shadow text-lg text-center transition duration-300 ease-in-out hover:opacity-30;
   }
 
   .formcontainer {
@@ -57,15 +61,15 @@
   }
 
   .button-close {
-    @apply px-1 py-1 w-6 rounded-lg font-bold text-2xl transition duration-500 transform hover:scale-90 hover:text-gray-500;
+    @apply px-1 py-1 w-6 rounded-lg font-bold text-2xl text-gray-300 transition duration-500 transform hover:scale-90 hover:text-gray-500;
   }
 
   .button-add {
-    @apply px-2 py-2 mt-4 mb-4 ml-2 w-full rounded-md bg-purple-700 text-white font-bold hover:bg-gray-700;
+    @apply px-2 py-2 mt-4 mb-4 ml-2 w-full rounded-md bg-purple-700  text-white font-bold transition duration-200 hover:bg-gray-700;
   }
 
   .button-remove {
-    @apply px-2 py-2 mt-4 mb-4 mr-2 w-full rounded-md bg-gray-400 text-white font-bold hover:bg-gray-700;
+    @apply px-2 py-2 mt-4 mb-4 mr-2 w-full rounded-md bg-gray-400  text-white font-bold transition duration-200 hover:bg-gray-700;
   }
 
   .button-cancel {

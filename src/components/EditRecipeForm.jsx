@@ -81,7 +81,7 @@ const EditRecipeForm = () => {
 
   return(
     <div className="mt-24">    
-    <div><button onClick={cancel} className="button-close">X</button></div>    
+    <div className="w-full flex flex-row justify-end"><button onClick={cancel} className="button-close">X</button></div>      
     <form>
       <div className="mb-4">
         <label className="label">Title</label>
