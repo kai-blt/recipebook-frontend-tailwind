@@ -35,6 +35,7 @@ const NavBar = () => {
     hamburger.classList.toggle('transform');
     hamburger.classList.toggle('rotate-180');
     menu.classList.toggle('menu-visible');
+    menu.classList.toggle('bg-opacity-95');
     menu.classList.toggle('opacity-100');
   };
   
