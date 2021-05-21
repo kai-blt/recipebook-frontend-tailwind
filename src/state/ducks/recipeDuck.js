@@ -34,6 +34,9 @@ export const SEARCH_RECIPE_SUCCESS = 'SEARCH_RECIPE_SUCCESS';
 export const SEARCH_TYPE_START = 'SEARCH_TYPE_START';
 export const SEARCH_TYPE_SUCCESS = 'SEARCH_TYPE_SUCCESS';
 
+export const FILTER_TYPE_START = 'FILTER_TYPE_START';
+export const FILTER_TYPE_SUCCESS = 'FILTER_TYPE_SUCCESS';
+
 export const SEARCH_IMAGE_START = 'SEARCH_IMAGE_START';
 export const SEARCH_IMAGE_SUCCESS = 'SEARCH_IMAGE_SUCCESS';
 export const SEARCH_IMAGE_FAIL = 'SEARCH_IMAGE_FAIL';
@@ -124,6 +127,12 @@ export const recipeActions = {
     dispatch({ type: SEARCH_TYPE_SUCCESS, payload: type });
   },
 
+  // SEARCH FILTER TYPE
+  filterType: (type) => dispatch => {
+    dispatch({ type: FILTER_TYPE_START });
+    dispatch({ type: FILTER_TYPE_SUCCESS, payload: type });
+  },
+
   // SEARCH IMAGE
   searchImage: (imageQuery) => dispatch => {
     dispatch({ type: SEARCH_IMAGE_START });
@@ -147,6 +156,8 @@ export const recipeInitialState = {
   recipes: [],
   imageSearch: [],
   viewing: '',
+  searchType: 'title',
+  filterType: '',
   search: '',
   status: 'idle',
 };
@@ -242,10 +253,22 @@ const recipeReducer = (state = recipeInitialState, action) => {
   case SEARCH_TYPE_SUCCESS:
     return {
     ...state,
-    type: action.payload,
+    searchType: action.payload,
     status: 'search-type/success',
     error: ''
     };
+
+  // SEARCH FILTER TYPE
+  case FILTER_TYPE_START:
+    return { ...state, status: 'search-type/pending' };
+  case FILTER_TYPE_SUCCESS:
+    return {
+    ...state,
+    filterType: action.payload,
+    status: 'search-type/success',
+    error: ''
+    };
+
 
   // SEARCH IMAGE
   case SEARCH_IMAGE_START:

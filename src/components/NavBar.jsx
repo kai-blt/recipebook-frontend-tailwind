@@ -35,6 +35,7 @@ const NavBar = () => {
     hamburger.classList.toggle('transform');
     hamburger.classList.toggle('rotate-180');
     menu.classList.toggle('menu-visible');
+    menu.classList.toggle('bg-opacity-95');
     menu.classList.toggle('opacity-100');
   };
   
@@ -52,12 +53,16 @@ const NavBar = () => {
     push('/recipes');
   };
 
+  const filterType = (type) => {
+    dispatch(recipeActions.filterType(type));
+  }
+
   const logOut = () => {
     dispatch(userActions.logout());
   };
 
   return(    
-    <nav className="p-4 w-full  shadow-md flex flex-row justify-between fixed top-0 left-0 z-40 bg-green-400"> 
+    <nav className="navbar"> 
       <button onClick={toggleMenu} className="w-10 transition duration-200">
         <svg className="text-green-400" viewBox="0 0 100 60" fill="white" width="40" height="40">
           <rect width="100" height="15"></rect>
@@ -83,8 +88,12 @@ const NavBar = () => {
       <div className="menu-invisible">
         <p className="text-7xl mb-8 md:hidden">RECIPE BOOK</p>
         <ul>
-          <li className="link" onClick={createRecipe}>Create New Recipe</li>
-          <li className="link" onClick={logOut}>Logout</li>
+          <li className="cursor-pointer mb-10" onClick={createRecipe}>Create New Recipe</li>
+          <li className="cursor-pointer mb-2" onClick={() => filterType('')}>All Recipes</li>
+          <li className="cursor-pointer mb-2" onClick={() => filterType('main')}>Main</li>
+          <li className="cursor-pointer mb-2" onClick={() => filterType('side')}>Sides</li>
+          <li className="cursor-pointer mb-10" onClick={() => filterType('sweets')}>Desserts</li>
+          <li className="cursor-pointer mb-2" onClick={logOut}>Logout</li>
         </ul>
       </div>
       {/* <button className="button" onClick={createRecipe}>Add Recipe</button>    */}

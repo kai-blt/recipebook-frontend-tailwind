@@ -7,8 +7,8 @@ import { RecipeCard, RecipeView } from './'
 const Recipes = (props) => {
   //Redux State Managers
   const dispatch = useDispatch();
-  const { recipes, viewing, status, search, type } = useSelector(state => state.recipes);
-
+  const { recipes, viewing, status, search, searchType, filterType } = useSelector(state => state.recipes);
+  console.log(searchType, filterType, recipes)
   useEffect(() =>{
     dispatch(recipeActions.getRecipes());
   },[dispatch]);
@@ -32,18 +32,79 @@ const Recipes = (props) => {
 
   return (
     <div className="mt-24">
-      <section className="flex flex-col justify-between mt-4 sm:flex-row flex-wrap">
+      <section className="recipe-container">
         {viewing
           ? <RecipeView recipe={viewing} />
-          : recipes
-            ? type !== "ingredient" 
-              ? recipes
-                  .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
-                  .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
-              : recipes
-                  .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${search}`, "i"))))
-                  .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />) 
-          : <div>Loading...</div> 
+          : searchType 
+            ? 
+              {
+                'title': 
+                  filterType
+                    ? {
+                        'main':
+                          recipes
+                            .filter(recipe => recipe.type.match(new RegExp(`${filterType}`, "i")))
+                            .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
+                            .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />), 
+                        'side':
+                          recipes
+                            .filter(recipe => recipe.type.match(new RegExp(`${filterType}`, "i")))
+                            .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
+                            .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />),  
+                        'sweets':
+                          recipes
+                            .filter(recipe => recipe.type.match(new RegExp(`${filterType}`, "i")))
+                            .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
+                            .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />), 
+                        '':
+                          recipes
+                            .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
+                            .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
+                      }[filterType]
+                    : recipes
+                      .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
+                      .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />),
+                'ingredient':
+                  filterType 
+                    ? {
+                        'main':
+                          recipes
+                            .filter(recipe => recipe.type.match(new RegExp(`${filterType}`, "i")))
+                            .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${search}`, "i"))))
+                            .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
+                            ,
+                        'side':
+                          recipes
+                            .filter(recipe => recipe.type.match(new RegExp(`${filterType}`, "i")))
+                            .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${search}`, "i"))))
+                            .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
+                          ,
+                        'sweets':
+                          recipes
+                            .filter(recipe => recipe.type.match(new RegExp(`${filterType}`, "i")))
+                            .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${search}`, "i"))))
+                            .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
+                          ,
+                        '':
+                          recipes
+                            .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
+                            .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
+                            
+                      }[filterType]
+                  : recipes
+                    .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${search}`, "i"))))
+                    .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />) 
+          }[searchType]
+              
+            :<div>Loading...</div>
+          //   ? type !== "ingredient" 
+          //     ? recipes
+          //         .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
+          //         .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />)
+          //     : recipes
+          //         .filter(recipe => recipe.ingredients.some(ing => ing.name.match(new RegExp(`${search}`, "i"))))
+          //         .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />) 
+          // : <div>Loading...</div> 
         }          
       </section>
     </div>

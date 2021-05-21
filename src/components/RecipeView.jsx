@@ -27,11 +27,11 @@ const RecipeView = (props) => {
   return(
     <>
       <div className="w-full">
-        <div><button onClick={cancel} className="button-close">X</button></div>        
+        <div className="w-full flex flex-row justify-end"><button onClick={cancel} className="button-close">X</button></div>        
         <h2 className="font-bold text-4xl">{name}</h2>
         <h3 className="font-light text-3xl">{type}</h3>     
         <section>
-          <h4 className="font-bold text-2xl text-green-400 mt-4">Ingredients</h4>
+          <h4 className="h4">Ingredients</h4>
           <div className="pl-2">           
             {groups.sort().map(grp => {
               return(
@@ -49,7 +49,7 @@ const RecipeView = (props) => {
           </div>
         </section>
         <section>
-          <h4 className="font-bold text-2xl text-green-400 mt-4">Steps</h4>
+          <h4 className="h4">Steps</h4>
           <div className="pl-2">
             <ul>
               {steps.sort().map(step =><li key={step.stepid} className="mb-4"><span className="font-bold">{step.stepnumber}.</span> {step.instructions}</li>)}
