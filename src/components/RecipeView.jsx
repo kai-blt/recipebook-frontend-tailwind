@@ -32,20 +32,23 @@ const RecipeView = (props) => {
         <h3 className="font-light text-3xl">{type}</h3>     
         <section>
           <h4 className="h4">Ingredients</h4>
-          <div className="pl-2">           
-            {groups.sort().map(grp => {
-              return(
-                <div key={grp} className="mb-4">
-                  <div className="font-light text-2xl mb-2 text-gray-700">{grp}</div>
-                  <ul>
-                    {ingredients.map(ing => 
-                      ing.ingredientgroup === grp
-                      ? <li key={ing.ingredientid}><span className="font-bold">{ing.quantity} {ing.measurement}</span> {ing.name}</li>
-                      : null)
-                    }
-                  </ul>
-                </div>)
-            })}
+          <div className="flex flex-row justify-start">
+            <div className="pl-2">           
+              {groups.sort().map(grp => {
+                return(
+                  <div key={grp} className="mb-4">
+                    <div className="font-light text-2xl mb-2 text-gray-700">{grp}</div>
+                    <ul>
+                      {ingredients.map(ing => 
+                        ing.ingredientgroup === grp
+                        ? <li key={ing.ingredientid}><span className="font-bold">{ing.quantity} {ing.measurement}</span> {ing.name}</li>
+                        : null)
+                      }
+                    </ul>
+                  </div>)
+              })}
+            </div>
+            <div className="recipe-image-desktop" style={{backgroundImage: `url(${imageURL})`, backgroundSize: "cover"}}></div>
           </div>
         </section>
         <section>
@@ -56,7 +59,7 @@ const RecipeView = (props) => {
             </ul>
           </div>
         </section>
-        <div className="recipe-image" style={{backgroundImage: `url(${imageURL})`, backgroundSize: "cover"}}></div>
+        <div className="recipe-image sm:hidden" style={{backgroundImage: `url(${imageURL})`, backgroundSize: "cover"}}></div>
         <button onClick={editRecipe} className="button">Edit Recipe</button>
       </div>
     </>

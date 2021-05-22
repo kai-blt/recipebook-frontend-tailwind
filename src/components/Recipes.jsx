@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import { recipeActions } from '../state/ducks';
 import { RecipeCard, RecipeView } from './'
 
@@ -33,7 +32,7 @@ const Recipes = (props) => {
     <div className="mt-20">
       {viewing !== ""
         ? null
-        : <div className="mb-4 ml-4 sm:ml-14 font-bold text-gray-700">Viewing <span className="font-bold text-purple-700">{filterType == "" ? 'ALL' : filterType.toUpperCase()}</span> recipes:</div>
+        : <div className="mb-4 ml-4 sm:ml-14 font-bold text-gray-700">Viewing <span className="font-bold text-purple-700">{filterType === "" ? 'ALL' : filterType.toUpperCase()}</span> recipes:</div>
       }
       <section className="recipe-container">
         {viewing
