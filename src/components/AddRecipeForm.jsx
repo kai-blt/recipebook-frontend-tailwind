@@ -53,6 +53,8 @@ const AddRecipeForm = () => {
     
     //Reinitialize form state
     setFormValues({...formValues, ...initialFormValues});
+
+    dispatch(recipeActions.viewRecipe(''));
   
     // Scroll to top for Safari
     document.body.scrollTop = 0;

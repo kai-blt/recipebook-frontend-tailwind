@@ -38,7 +38,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <div className="formcontainer">
+    <div className="form-container">
     {!isCreatingAccount
       ?
       <>
