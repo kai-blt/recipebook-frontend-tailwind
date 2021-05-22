@@ -35,6 +35,13 @@ const EditRecipeForm = () => {
     });
   },[])
     
+  const deleteConfirmation = (e) => {
+    e.preventDefault();
+    const modal = document.querySelector('.modal-invisible');
+    modal.classList.toggle('visible');
+    modal.classList.toggle('opacity-100');
+    modal.classList.toggle('bg-opacity-90');
+  };
 
   const deleteRecipe = (e) => {
     e.preventDefault();
@@ -174,10 +181,19 @@ const EditRecipeForm = () => {
             ))}
           </div>
           <div className="flex flex-row justify-between">
-            <button className="button-cancel w-96 mr-1" onClick={deleteRecipe}>Delete</button>
+            <button className="button-cancel w-96 mr-1" onClick={e => deleteConfirmation(e)}>Delete</button>
             <button className="button w-96 ml-1" onClick={e => submit(e)}>Submit</button>
           </div>
         </form>
+      </div>
+      <div className="modal-invisible">
+        <div className="modal">
+          <div className="font-bold text-2xl">Are you sure?</div>
+          <div className="flex flex-row justify-between">
+            <button className="button-cancel mr-1" onClick={e => deleteConfirmation(e)}>Cancel</button>
+            <button className="button ml-1" onClick={deleteRecipe}>Yes</button>
+          </div>
+        </div>
       </div>
     </div>
   )
