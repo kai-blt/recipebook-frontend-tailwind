@@ -59,7 +59,7 @@ export const recipeActions = {
         dispatch({ type: GET_RECIPE_SUCCESS, payload: res.data.recipes })
       })
       .catch(err => {
-        dispatch({ type: GET_RECIPE_FAIL });
+        dispatch({ type: GET_RECIPE_FAIL, payload: err });
       })
       .finally(() => dispatch({ type: GET_RECIPE_RESOLVE }));
   },

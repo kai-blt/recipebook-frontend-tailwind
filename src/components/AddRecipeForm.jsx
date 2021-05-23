@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormHelpers } from './utils/useFormHelpers';
 import { recipeActions } from '../state/ducks';
 import { useEffect } from 'react';
@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 const AddRecipeForm = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
+  const { error } = useSelector(state => state.recipes);
 
   //Form Helper Utils
   const { 
@@ -22,6 +23,11 @@ const AddRecipeForm = () => {
   } = useFormHelpers();
 
   useEffect(()=>{
+    dispatch(recipeActions.getRecipes());
+
+    if (error.toJSON().message.includes('401')) {
+      push('/');
+    }; 
     // Scroll to top for Safari
     document.body.scrollTop = 0;
     // Scroll to top for Chrome, Firefox, IE, Opera
