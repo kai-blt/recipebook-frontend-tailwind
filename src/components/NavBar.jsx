@@ -5,10 +5,13 @@ import { recipeActions, userActions } from '../state/ducks';
 
 const NavBar = () => {
   const [search, setSearch] = useState('');
-  
+  const [clicked, setClicked] = useState(false);
+  const [clickedDropdown, setClickedDropdown] = useState(false);
+
   const { push } = useHistory();
   const dispatch = useDispatch();
   const { status } = useSelector(state => state.user);
+  const { searchType } = useSelector(state => state.recipes);
 
   useEffect(() => {
     dispatch(recipeActions.searchRecipe(search));
@@ -25,9 +28,18 @@ const NavBar = () => {
   };
 
   const handleSearchType = (e) => {
-    dispatch(recipeActions.searchType(e.target.value));
+    setClicked(!clicked);
+    toggleSearchType();
+    dispatch(recipeActions.searchType(e.target.innerHTML));
   };
 
+  const toggleSearchType = () => {
+    const filter = document.querySelector('.search-filter');
+    const secondary_item = document.querySelector('.search-filter-item');
+    setClickedDropdown(!clickedDropdown);
+    filter.classList.toggle('h-24');
+    secondary_item.classList.toggle('block');
+  };
   
   const toggleMenu = () => {
     const menu = document.querySelector('.menu-invisible');
@@ -64,6 +76,7 @@ const NavBar = () => {
     dispatch(userActions.logout());
   };
 
+  console.log(searchType)
   return(    
     <nav className="navbar"> 
       <button onClick={toggleMenu} className="w-10 transition duration-200">
@@ -74,11 +87,23 @@ const NavBar = () => {
         </svg>
       </button>      
       <p className="absolute invisible left-20 md:visible text-white align-middle md:text-3xl ">RECIPE BOOK</p>
-      <div className="w-3/5">
-        <select onChange={handleSearchType} className="searchtype">
-          <option value="title">title</option>
-          <option value="ingredient">ingredient</option>
-        </select>
+      <div className="w-2/3 relative">
+        <div className="search-filter">
+          <ul>
+            <li className="mb-4">
+              <div className="flex flex-row justify-between">
+                <div className="cursor-pointer hover:text-gray-400" onClick={e => handleSearchType(e)}>{!clicked ? "Title" : "Ingredient"}</div>
+                {clickedDropdown
+                  ? <div className="cursor-pointer hover:text-gray-400" onClick={toggleSearchType}>&#9650;</div>
+                  : <div className="cursor-pointer hover:text-gray-400" onClick={toggleSearchType}>&#9660;</div>
+                }
+              </div>
+            </li>
+            <li className="search-filter-item">
+                <div onClick={e => handleSearchType(e)}>{!clicked ? "Ingredient" : "Title"}</div>
+            </li>
+          </ul>
+        </div>
         <input
           type="text"
           name="search"
