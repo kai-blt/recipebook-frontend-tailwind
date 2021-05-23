@@ -8,7 +8,6 @@ const Recipes = (props) => {
   //Redux State Managers
   const dispatch = useDispatch();
   const { recipes, viewing, status, error, search, searchType, filterType } = useSelector(state => state.recipes);
-  const ba = useSelector(state => console.log(state.recipes));
   const { push } = useHistory();
 
   useEffect(() =>{

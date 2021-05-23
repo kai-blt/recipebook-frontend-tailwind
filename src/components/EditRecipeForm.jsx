@@ -8,6 +8,7 @@ const EditRecipeForm = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
   const { recipename } = useParams();
+  const { error } = useSelector(state => state.recipes);
   const recipe = useSelector(state => state.recipes.recipes.filter(recipe => recipe.name === recipename)[0]);
 
   //Form Helper Utils
@@ -24,10 +25,16 @@ const EditRecipeForm = () => {
   } = useFormHelpers();
 
   useEffect(() =>{
-     // Scroll to top for Safari
-     document.body.scrollTop = 0;
-     // Scroll to top for Chrome, Firefox, IE, Opera
-     document.documentElement.scrollTop = 0;
+    dispatch(recipeActions.getRecipes());
+
+    if (error.toJSON().message.includes('401')) {
+      push('/');
+    };
+    
+    // Scroll to top for Safari
+    document.body.scrollTop = 0;
+    // Scroll to top for Chrome, Firefox, IE, Opera
+    document.documentElement.scrollTop = 0;
 
     setFormValues({
       ...formValues,
