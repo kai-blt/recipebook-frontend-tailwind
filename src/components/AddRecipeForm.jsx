@@ -25,9 +25,12 @@ const AddRecipeForm = () => {
   useEffect(()=>{
     dispatch(recipeActions.getRecipes());
 
-    if (error.toJSON().message.includes('401')) {
-      push('/');
-    }; 
+    if (error != '') {
+      if (error.toJSON().message.includes('401')) {
+        push('/');
+      }; 
+    }
+       
     // Scroll to top for Safari
     document.body.scrollTop = 0;
     // Scroll to top for Chrome, Firefox, IE, Opera
