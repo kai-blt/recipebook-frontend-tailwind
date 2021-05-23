@@ -156,7 +156,7 @@ export const recipeInitialState = {
   recipes: [],
   imageSearch: [],
   viewing: '',
-  searchType: 'title',
+  searchType: 'Title',
   filterType: '',
   search: '',
   status: 'idle',

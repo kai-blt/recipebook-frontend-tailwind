@@ -40,7 +40,7 @@ const Recipes = (props) => {
           : searchType 
             ? 
               {
-                'title': 
+                'Title': 
                   filterType
                     ? {
                         'main':
@@ -66,7 +66,7 @@ const Recipes = (props) => {
                     : recipes
                       .filter(recipe => recipe.name.match(new RegExp(`${search}`, "i")))
                       .map(recipe => <RecipeCard key={recipe.recipeid} recipe={recipe} />),
-                'ingredient':
+                'Ingredient':
                   filterType 
                     ? {
                         'main':
