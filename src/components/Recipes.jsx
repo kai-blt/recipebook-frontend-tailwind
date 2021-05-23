@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { recipeActions } from '../state/ducks';
 import { RecipeCard, RecipeView } from './'
 
 const Recipes = (props) => {
   //Redux State Managers
   const dispatch = useDispatch();
-  const { recipes, viewing, status, search, searchType, filterType } = useSelector(state => state.recipes);
-  
+  const { recipes, viewing, status, error, search, searchType, filterType } = useSelector(state => state.recipes);
+  const ba = useSelector(state => console.log(state.recipes));
+  const { push } = useHistory();
+
   useEffect(() =>{
     dispatch(recipeActions.getRecipes());
   },[dispatch]);
@@ -22,6 +25,11 @@ const Recipes = (props) => {
         break;
       case "edit-recipe/success":
         dispatch(recipeActions.getRecipes());
+        break;
+      case "get-recipe/error":        
+        if (error.toJSON().message.includes('401')) {
+           push('/');
+        }; 
         break;
       default:
         break;

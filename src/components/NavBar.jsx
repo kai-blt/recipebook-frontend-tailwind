@@ -76,7 +76,6 @@ const NavBar = () => {
     dispatch(userActions.logout());
   };
 
-  console.log(searchType)
   return(    
     <nav className="navbar"> 
       <button onClick={toggleMenu} className="w-10 transition duration-200">

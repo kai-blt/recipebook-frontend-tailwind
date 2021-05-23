@@ -5,7 +5,7 @@ const  ProtectedRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render = {props =>
     localStorage.getItem('token')
-      ? <Component {...props} />
+      ? <Component {...props} />      
       : <Redirect to ='/' />
     }
   />
