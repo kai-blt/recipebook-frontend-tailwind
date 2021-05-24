@@ -27,10 +27,8 @@ const EditRecipeForm = () => {
   useEffect(() =>{
     dispatch(recipeActions.getRecipes());
 
-    if (error != '') {
-      if (error.toJSON().message.includes('401')) {
-        push('/');
-      }; 
+    if (error === undefined) {
+      push('/');
     };
     
     // Scroll to top for Safari

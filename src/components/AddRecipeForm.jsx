@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom'; 
 import { useFormHelpers } from './utils/useFormHelpers';
 import { recipeActions } from '../state/ducks';
 import { useEffect } from 'react';
@@ -7,7 +8,7 @@ import { useEffect } from 'react';
 const AddRecipeForm = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
-  const { error } = useSelector(state => state.recipes);
+  const { error, status} = useSelector(state => state.recipes);
 
   //Form Helper Utils
   const { 
@@ -25,17 +26,16 @@ const AddRecipeForm = () => {
   useEffect(()=>{
     dispatch(recipeActions.getRecipes());
 
-    if (error != '') {
-      if (error.toJSON().message.includes('401')) {
-        push('/');
-      }; 
-    }
-       
+    if (error === undefined) {
+      push('/');
+    };
+
     // Scroll to top for Safari
     document.body.scrollTop = 0;
     // Scroll to top for Chrome, Firefox, IE, Opera
     document.documentElement.scrollTop = 0;
   },[])
+
 
   const cancel = () => {
     push('/recipes');
