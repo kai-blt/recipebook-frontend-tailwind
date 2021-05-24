@@ -70,6 +70,7 @@ const LoginForm = (props) => {
             </svg>
           : null
         }
+        <div className="text-red-400">{error}</div>
       </>
       :
       <>
@@ -108,6 +109,7 @@ const LoginForm = (props) => {
             </svg>
           : null
         }
+        <div className="text-red-400">{error}</div>
       </>
     }      
     </div>
