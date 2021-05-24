@@ -44,7 +44,7 @@ const EditRecipeForm = () => {
       ...formValues,
       ...recipe
     });
-  },[]);
+  },[dispatch, error, setFormValues, formValues, recipe]);
 
   useEffect(() => {
     schema.isValid(formValues)

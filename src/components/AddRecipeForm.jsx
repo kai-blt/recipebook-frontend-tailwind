@@ -36,7 +36,7 @@ const AddRecipeForm = () => {
     document.body.scrollTop = 0;
     // Scroll to top for Chrome, Firefox, IE, Opera
     document.documentElement.scrollTop = 0;
-  },[]);
+  },[dispatch, error]);
 
   useEffect(() => {
     setFormValues({
@@ -54,8 +54,6 @@ const AddRecipeForm = () => {
         setEnableSubmit(!valid);
       });
   }, [formValues]); 
-
-
   
   const cancel = () => {
     push('/recipes');
