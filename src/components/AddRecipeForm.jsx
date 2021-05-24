@@ -27,7 +27,7 @@ const AddRecipeForm = () => {
     dispatch(recipeActions.getRecipes());
 
     if (error === undefined) {
-      push('/');
+      <Redirect to='/'/>
     };
 
     // Scroll to top for Safari

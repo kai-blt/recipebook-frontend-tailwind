@@ -1,5 +1,6 @@
 import { useHistory, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { useFormHelpers } from './utils/useFormHelpers';
 import { recipeActions } from '../state/ducks';
 import { useEffect } from 'react';
@@ -28,7 +29,7 @@ const EditRecipeForm = () => {
     dispatch(recipeActions.getRecipes());
 
     if (error === undefined) {
-      push('/');
+      <Redirect to='/'/>
     };
     
     // Scroll to top for Safari
