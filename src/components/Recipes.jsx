@@ -33,7 +33,7 @@ const Recipes = (props) => {
       default:
         break;
     };
-  },[dispatch, status]);
+  },[dispatch, error, push, status]);
 
   return (
     <div className="mt-20">

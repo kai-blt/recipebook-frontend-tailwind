@@ -11,7 +11,6 @@ const NavBar = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
   const { status } = useSelector(state => state.user);
-  const { searchType } = useSelector(state => state.recipes);
 
   useEffect(() => {
     dispatch(recipeActions.searchRecipe(search));
