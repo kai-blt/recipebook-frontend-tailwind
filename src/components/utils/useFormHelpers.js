@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import * as yup from 'yup';
+import schema from '../../validation/schema'; 
 
 //Initial Form Values
 export const initialFormValues = {
@@ -60,12 +62,66 @@ export const useFormHelpers = () => {
     };
   };
 
-  const handleChange = (e, index) => {
+  const validateField = (e) => {
     switch(e.target.name) {
-      case "ingredientname":
+      case "type":
+
+        break;
+      case "ingredientname":        
+        // console.log(errors)
+        console.log("HI", e.target.value)
+        if (e.target.value.length < 2) {
+          setErrors({...errors, name: 'crap'})
+          console.log(errors)
+        } else {
+          console.log(errors)
+          setErrors({...errors, name: ''})
+        }   
+        // console.log(validate1, errors)
+        break;
+      case "quantity":
+        console.log(errors)
+        let validate2 = e.target.value.length <= 1 ? setErrors({...errors, name: 'crap'}) : setErrors({...errors, name: ''})
+        console.log(validate2, errors)
+        break;
+      case "measurement":
+        console.log(errors)
+        let validate3 = e.target.value.length <= 1 ? setErrors({...errors, name: 'crap'}) : setErrors({...errors, name: ''})
+        console.log(validate3, errors)
+        break;
+      case "group":
+        console.log(errors)
+        let validate4 = e.target.value.length <= 1 ? setErrors({...errors, name: 'crap'}) : setErrors({...errors, name: ''})
+        console.log(validate4, errors)
+        break;
+      case "instructions":
+        console.log(errors)
+        let validate5 = e.target.value.length <= 1 ? setErrors({...errors, name: 'crap'}) : setErrors({...errors, name: ''})
+        console.log(validate5, errors)
+        break;
+      default:
+        break;
+    };    
+  };
+
+ 
+  const handleChange = (e, index) => {
+    yup.reach(schema, e.target.name)
+      .validate(e.target.value)
+      .then(() => {
+        setErrors({...errors, [e.target.name]: ""})
+      })
+      .catch(err => {
+        setErrors({...errors, [e.target.name]: err.errors[0] })
+      });
+
+    console.log(errors)
+
+    switch(e.target.name) {
+      case "ingredientname":        
         const newIngName = [ ...formValues.ingredients ];
         newIngName[index].name = e.target.value;
-        setFormValues({...formValues, ingredients: newIngName });
+        setFormValues({...formValues, ingredients: newIngName });        
         break;
       case "quantity":
         const newIngQuantity = [ ...formValues.ingredients ];
@@ -96,6 +152,8 @@ export const useFormHelpers = () => {
   return {
     initialFormValues,
     formValues,
+    errors,
+    setErrors,
     setFormValues,
     addIngredient,
     delIngredient,

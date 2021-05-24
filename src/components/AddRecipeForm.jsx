@@ -1,14 +1,16 @@
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom'; 
 import { useFormHelpers } from './utils/useFormHelpers';
 import { recipeActions } from '../state/ducks';
-import { useEffect } from 'react';
+import schema from '../validation/schema';
 
 const AddRecipeForm = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
-  const { error, status} = useSelector(state => state.recipes);
+  const [enableSubmit, setEnableSubmit] = useState(true);
+  const { error } = useSelector(state => state.recipes);
 
   //Form Helper Utils
   const { 
@@ -34,9 +36,27 @@ const AddRecipeForm = () => {
     document.body.scrollTop = 0;
     // Scroll to top for Chrome, Firefox, IE, Opera
     document.documentElement.scrollTop = 0;
-  },[])
+  },[]);
+
+  useEffect(() => {
+    setFormValues({
+      name: "",
+      type: "",
+      imageURL: "",
+      ingredients: [{ quantity: "", measurement: "", name: "", ingredientgroup: "" }],
+      steps: [{stepnumber: 1, instructions: ""}]
+    });
+  },[setFormValues])
+  
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => {        
+        setEnableSubmit(!valid);
+      });
+  }, [formValues]); 
 
 
+  
   const cancel = () => {
     push('/recipes');
   };
@@ -88,14 +108,14 @@ const AddRecipeForm = () => {
               onChange={handleChange}
               className="input"
             />
+            <div className="text-red-400">{errors.name}</div>
             <label className="label">Type</label>
-            <input
-              type="text"
-              name="type"
-              value={formValues.type}
-              onChange={handleChange}
-              className="input"
-            />
+            <select name="type" value={formValues.type} onChange={handleChange} className="input">
+              <option value="Main">Main</option>
+              <option value="Side">Side</option>
+              <option value="Sweets">Sweets</option>
+              <option value="Drinks">Drinks</option>
+            </select>
             <label className="label">Image URL</label>
             <input
               type="text"
@@ -104,11 +124,12 @@ const AddRecipeForm = () => {
               onChange={handleChange}
               className="input"
             />   
+            <div className="text-red-400">{errors.imageURL}</div>
           </div>       
           <div className="mb-4">
             <h2 className="heading2">Ingredients</h2>
             {formValues.ingredients.map((ing, index) => (
-              <div className="form-group">
+              <div key={ing + index} className="form-group">
                 <label className="label">Qty</label>
                 <input
                   type="text"
@@ -132,7 +153,7 @@ const AddRecipeForm = () => {
                   value={ing.name}
                   onChange={e => handleChange(e, index)}
                   className="input"
-                />     
+                />  
                 <label className="label">Group</label>
                 <input
                   type="text"
@@ -151,7 +172,7 @@ const AddRecipeForm = () => {
           <div className="mb-4">
             <h2 className="heading2">Steps</h2>
             {formValues.steps.map((stp, index) => (
-              <div className="form-group">
+              <div key={stp + index}className="form-group">
                 <label className="label">Step {stp.stepnumber}</label>
                 <textarea
                   type="text"
@@ -167,7 +188,7 @@ const AddRecipeForm = () => {
               </div>
             ))}
           </div>
-          <button className="button" onClick={e => submit(e)}>Submit</button>
+          {enableSubmit ? <button className="button-disabled" disabled>Submit</button> :  <button className="button" onClick={e => submit(e)}>Submit</button>}          
         </form>
       </div>
     </div>
