@@ -119,7 +119,8 @@ const NavBar = () => {
           <li className="navlink mb-2" onClick={()=> filterType('')}>All Recipes</li>
           <li className="navlink mb-2" onClick={()=> filterType('main')}>Main</li>
           <li className="navlink mb-2" onClick={()=> filterType('side')}>Side</li>
-          <li className="navlink mb-10" onClick={()=> filterType('sweets')}>Sweets</li>
+          <li className="navlink mb-2" onClick={()=> filterType('sweets')}>Sweets</li>
+          <li className="navlink mb-10" onClick={()=> filterType('drink')}>Drinks</li>
           <li className="navlink mb-2" onClick={logOut}>Logout</li>
         </ul>
       </div>

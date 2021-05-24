@@ -1,11 +1,14 @@
+import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { useFormHelpers } from './utils/useFormHelpers';
 import { recipeActions } from '../state/ducks';
-import { useEffect } from 'react';
+import schema from '../validation/schema';
+
 
 const EditRecipeForm = () => {
+  const [enableSubmit, setEnableSubmit] = useState(true);
   const { push } = useHistory();
   const dispatch = useDispatch();
   const { recipename } = useParams();
@@ -41,7 +44,14 @@ const EditRecipeForm = () => {
       ...formValues,
       ...recipe
     });
-  },[])
+  },[]);
+
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => {        
+        setEnableSubmit(!valid);
+      });
+  }, [formValues]); 
     
   const deleteConfirmation = (e) => {
     e.preventDefault();
@@ -109,14 +119,14 @@ const EditRecipeForm = () => {
               onChange={handleChange}
               className="input"
             />
+            <div className="text-red-400">{errors.name}</div>
             <label className="label">Type</label>
-            <input
-              type="text"
-              name="type"
-              value={formValues.type}
-              onChange={handleChange}
-              className="input"
-            />
+            <select name="type" value={formValues.type} onChange={handleChange} className="input">
+              <option value="Main">Main</option>
+              <option value="Side">Side</option>
+              <option value="Sweets">Sweets</option>
+              <option value="Drinks">Drinks</option>
+            </select>
             <label className="label">Image URL</label>
             <input
               type="text"
@@ -125,11 +135,12 @@ const EditRecipeForm = () => {
               onChange={handleChange}
               className="input"
             />   
+            <div className="text-red-400">{errors.imageURL}</div>
           </div>        
           <div className="mb-4">
             <h2 className="heading2">Ingredients</h2>
             {formValues.ingredients.map((ing, index) => (
-              <div className="form-group">
+              <div key={ing + index} className="form-group">
                 <label className="label">Qty</label>
                 <input
                   type="text"
@@ -172,7 +183,7 @@ const EditRecipeForm = () => {
           <div className="mb-4">
             <h2 className="heading2">Steps</h2>
             {formValues.steps.map((stp, index) => (
-              <div className="mb-12 border-2 p-2 rounded-lg bg-gray-100">
+              <div key={stp + index} className="mb-12 border-2 p-2 rounded-lg bg-gray-100">
                 <label className="label">Step {stp.stepnumber}</label>
                 <textarea
                   type="text"
@@ -190,7 +201,7 @@ const EditRecipeForm = () => {
           </div>
           <div className="flex flex-row justify-between">
             <button className="button-cancel w-96 mr-1" onClick={e => deleteConfirmation(e)}>Delete</button>
-            <button className="button w-96 ml-1" onClick={e => submit(e)}>Submit</button>
+            {enableSubmit ? <button className="button-disabled" disabled>Submit</button> :  <button className="button" onClick={e => submit(e)}>Submit</button>}
           </div>
         </form>
       </div>
