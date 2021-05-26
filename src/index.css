@@ -28,7 +28,7 @@
   }
 
   .form-container {
-    @apply sm:w-4/5 m-auto;
+    @apply sm:w-3/5 md:w-2/3 lg:w-1/3 m-auto;
   }
 
   .form-group {
