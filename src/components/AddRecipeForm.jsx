@@ -36,7 +36,8 @@ const AddRecipeForm = () => {
     document.body.scrollTop = 0;
     // Scroll to top for Chrome, Firefox, IE, Opera
     document.documentElement.scrollTop = 0;
-  },[dispatch, error]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
   useEffect(() => {
     setFormValues({

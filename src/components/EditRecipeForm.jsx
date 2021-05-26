@@ -6,7 +6,6 @@ import { useFormHelpers } from './utils/useFormHelpers';
 import { recipeActions } from '../state/ducks';
 import schema from '../validation/schema';
 
-
 const EditRecipeForm = () => {
   const [enableSubmit, setEnableSubmit] = useState(true);
   const { push } = useHistory();
@@ -44,14 +43,15 @@ const EditRecipeForm = () => {
       ...formValues,
       ...recipe
     });
-  },[dispatch, error, setFormValues, formValues, recipe]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
-  useEffect(() => {
+  useEffect(()=> {
     schema.isValid(formValues)
       .then(valid => {        
         setEnableSubmit(!valid);
-      });
-  }, [formValues]); 
+    });
+  }, [formValues])
     
   const deleteConfirmation = (e) => {
     e.preventDefault();
