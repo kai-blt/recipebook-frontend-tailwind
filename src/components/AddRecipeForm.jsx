@@ -42,7 +42,7 @@ const AddRecipeForm = () => {
   useEffect(() => {
     setFormValues({
       name: "",
-      type: "",
+      type: "Main",
       imageURL: "",
       ingredients: [{ quantity: "", measurement: "", name: "", ingredientgroup: "" }],
       steps: [{stepnumber: 1, instructions: ""}]
