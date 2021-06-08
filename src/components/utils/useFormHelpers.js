@@ -5,7 +5,7 @@ import schema from '../../validation/schema';
 //Initial Form Values
 export const initialFormValues = {
   name: "",
-  type: "",
+  type: "Main",
   imageURL: "",
   imageSearch: "",
   ingredients: [{ quantity: "", measurement: "", name: "", ingredientgroup: "" }],
