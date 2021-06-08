@@ -65,7 +65,8 @@ const EditRecipeForm = () => {
     e.preventDefault();
     dispatch(recipeActions.deleteRecipe(recipe.recipeid));
     setFormValues({...formValues, ...initialFormValues});
-    dispatch(recipeActions.viewRecipe(''));
+    dispatch(recipeActions.filterType(""));
+    dispatch(recipeActions.viewRecipe(""));
     push('/recipes');
   };
 
@@ -96,7 +97,8 @@ const EditRecipeForm = () => {
     // Scroll to top for Chrome, Firefox, IE, Opera
     document.documentElement.scrollTop = 0;
 
-    dispatch(recipeActions.viewRecipe(''));
+    dispatch(recipeActions.filterType(""));
+    dispatch(recipeActions.viewRecipe(""));
     push('/recipes');
   };
 

@@ -123,7 +123,6 @@ const NavBar = () => {
           <li className="navlink mb-2" onClick={logOut}>Logout</li>
         </ul>
       </div>
-      {/* <button className="button" onClick={createRecipe}>Add Recipe</button>    */}
   </nav>
   )
 };
